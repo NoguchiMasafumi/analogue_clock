@@ -1,0 +1,70 @@
+
+<html>
+  <head>
+    <title>CLOCK</title>
+    <style>
+      img{width: 860px;height: 860px;}
+      #base {width: 860px;height: 860px;position: relative;}
+      .clock {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+      }
+      .clock_hour_shd {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+      }
+      .clock_minute_shd {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+      }
+      .clock_second_shd {
+        position: absolute;
+        top: 45px;
+        left: 45px;
+      }
+    </style>
+  </head>
+  <body style="background-color:#ffffff;">
+    <div id="base">
+      <img src="img/dial.png" class="clock">
+
+      <img src="img/hour_shd.png" id="hour_shd" class="clock_hour_shd">
+      <img src="img/minute_shd.png" id="minute_shd" class="clock_minute_shd">
+      <img src="img/second_shd.png" id="second_shd" class="clock_second_shd">
+
+      <img src="img/dial_1.png" class="clock">
+
+      <img src="img/hour.png" id="hour" class="clock">
+      <img src="img/minute.png" id="minute" class="clock">
+      <img src="img/second.png" id="second" class="clock">
+    </div>
+
+    <script>
+      var time;
+      var hour = document.getElementById("hour");
+      var minute = document.getElementById("minute");
+      var second = document.getElementById("second");
+      var second_shd = document.getElementById("second_shd");
+
+      function main() {
+        time = new Date();
+        
+        hour.style.transform = "rotate("+(time.getHours()*30+time.getMinutes()*0.5)+"deg)";
+        minute.style.transform = "rotate("+(time.getMinutes()*6)+"deg)";
+        second.style.transform = "rotate("+(time.getSeconds()*6)+"deg)";
+
+        hour_shd.style.transform = "rotate("+(time.getHours()*30+time.getMinutes()*0.5)+"deg)";
+        minute_shd.style.transform = "rotate("+(time.getMinutes()*6)+"deg)";
+        second_shd.style.transform = "rotate("+(time.getSeconds()*6)+"deg)";
+        
+        document.title = time.getHours()+":"+("00"+time.getMinutes()).substr(-2,2) + ":" + ("00" + time.getSeconds()).substr(-2,2)
+
+        setTimeout(main, 1000-time.getMilliseconds());
+      }
+      main();
+    </script>
+  </body>
+</html>
